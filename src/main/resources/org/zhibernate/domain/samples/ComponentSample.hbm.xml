@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.zhibernate.domain.samples">
+	<class name="ComponentSample" table="compoonent_samples">
+		<id name="id" column="compoonent_sample_id">
+			<generator class="native" />
+		</id>
+		<version name="version"></version>
+		<property name="someString" column="some_string"/>
+		<component name="compomentChild" class="CompomentChild">
+			<property name="childString"/>
+			<property name="anotherString"></property>
+		</component>
+	</class>
+</hibernate-mapping>

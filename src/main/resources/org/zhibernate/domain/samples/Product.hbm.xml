@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.zhibernate.domain.samples">
+	<class name="Product">
+		<id name="id" column="product_serial_number">
+			<generator class="native" />
+		</id>
+		<property name="name"/>
+		<!-- set name="parts">
+			<key column="productSerialNumber" not-null="true" />
+			<one-to-many class="Part" />
+		</set-->
+
+		<set name="multiParts" table="product_part">
+			<key column="product_serial_number" />
+			<many-to-many class="Part" column="part_id" />
+		</set>
+
+	</class>
+</hibernate-mapping>
+
+

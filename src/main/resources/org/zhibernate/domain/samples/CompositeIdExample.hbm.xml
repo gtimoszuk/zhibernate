@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="org.zhibernate.domain.samples">
+  <class name="CompositeIdExample">
+ <composite-id>
+ 	<key-property name="name"></key-property>
+ 	<key-property name="surname"></key-property>
+ </composite-id>
+ <property name="nick"></property>
+  </class>
+</hibernate-mapping>

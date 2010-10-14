@@ -32,7 +32,8 @@
 		<mapping resource="org/zhibernate/domain/samples/ComponentSample.hbm.xml" />
 		<mapping resource="org/zhibernate/domain/samples/Product.hbm.xml" />
 		<mapping resource="org/zhibernate/domain/samples/Part.hbm.xml" />
-
+		<mapping resource="org/zhibernate/domain/samples/GeneratorExample.hbm.xml" />
+		<mapping resource="org/zhibernate/domain/samples/CompositeIdExample.hbm.xml" />
 
 	</session-factory>
 </hibernate-configuration>

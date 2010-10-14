@@ -35,5 +35,9 @@
 		<mapping resource="org/zhibernate/domain/samples/GeneratorExample.hbm.xml" />
 		<mapping resource="org/zhibernate/domain/samples/CompositeIdExample.hbm.xml" />
 		<mapping resource="org/zhibernate/domain/samples/inheritance/Shape.hbm.xml" />
+		<mapping
+			resource="org/zhibernate/domain/samples/relationships/Publisher.hbm.xml" />
+		<mapping resource="org/zhibernate/domain/samples/relationships/Book.hbm.xml" />
+
 	</session-factory>
 </hibernate-configuration>

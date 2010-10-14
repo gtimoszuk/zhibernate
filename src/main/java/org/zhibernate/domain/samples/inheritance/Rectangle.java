@@ -18,7 +18,7 @@ public class Rectangle extends Shape {
 	
 	@Override
 	public double calculateArea() {
-		return 0;
+		return width * lenght;
 	}
 
 	public double getWidth() {

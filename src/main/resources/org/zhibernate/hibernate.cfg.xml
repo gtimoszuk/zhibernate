@@ -4,14 +4,20 @@
 		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-		<property name="hibernate.connection.username">postgres</property>
+		<property name="connection.driver_class">org.hsqldb.jdbcDriver</property>
+		<property name="connection.url">jdbc:hsqldb:file:/tmp/testDB;shutdown=true</property>
+		<property name="connection.username">sa</property>
 		<property name="connection.password"></property>
-		<property name="hibernate.default_schema">public</property>
-		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="dialect">org.hibernate.dialect.HSQLDialect</property>
 
-		<property name="connection.url">jdbc:postgresql://localhost/postgres</property>
 
+		<!-- <property name="hibernate.connection.driver_class">org.postgresql.Driver</property> 
+			<property name="hibernate.connection.username">postgres</property> 
+			<property name="connection.password"></property> 
+			<property name="hibernate.default_schema">public</property> 
+			<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property> 
+			<property name="connection.url">jdbc:postgresql://localhost/postgres</property> -->
+			
 		<!-- JDBC connection pool (use the built-in) -->
 		<property name="connection.pool_size">100</property>
 

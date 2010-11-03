@@ -1,33 +1,29 @@
-package org.zhibernate.domain.samples;
+package org.zhibernate.domain.samples.inteceptors;
 
-import java.util.List;
 import java.util.Set;
 
-import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.zhibernate.domain.samples.Part;
+import org.zhibernate.domain.samples.Product;
 import org.zhibernate.util.HibernateUtil;
 
-public class ProductPartTest {
+public class InterceptorExample {
+	private static final Logger log = LoggerFactory.getLogger(InterceptorExample.class);
 
-	private static final Logger log = LoggerFactory.getLogger(ProductPartTest.class);
 	static Long part1Id;
 	static Long part2Id;
 	
 	static Session session;
 	
-	
 	@Before
 	public void before() {
-		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session = HibernateUtil.getSessionFactory().openSession(new PartInterceptor());
 		session.beginTransaction();
 	}
 
@@ -63,23 +59,4 @@ public class ProductPartTest {
 		Set<Product> part1Products = (Set<Product>) ((Part) session.get(Part.class, part1Id)).getProducts();
 		log.info(part1Products.toString());
 	}
-	
-	
-	@Test
-	public void getMulti() {
-		Part part1WithProduct = (Part) session.get(Part.class, part1Id);
-		Set<Product> part1Products = (Set<Product>) ((Part) session.get(Part.class, part1Id)).getProducts();
-		log.info(part1Products.toString());
-		
-	}
-	
-	@Test
-	public void criteriaExample() {
-		Criteria exp1 = session.createCriteria(Part.class);
-		exp1.add(Restrictions.ilike("name", "part", MatchMode.START));
-		List<Part> res = exp1.setMaxResults(3).list();
-		log.info("RESULT: " + res.toString());
-	}
-
-	
 }

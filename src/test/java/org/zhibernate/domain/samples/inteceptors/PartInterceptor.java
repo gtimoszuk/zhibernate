@@ -12,6 +12,8 @@ import org.zhibernate.domain.samples.Part;
 
 public class PartInterceptor extends EmptyInterceptor {
 
+	private static final long serialVersionUID = 9059896586755454359L;
+
 	private static final Logger log = LoggerFactory
 			.getLogger(PartInterceptor.class);
 

@@ -18,9 +18,9 @@ public class InterceptorExample {
 
 	static Long part1Id;
 	static Long part2Id;
-	
+
 	static Session session;
-	
+
 	@Before
 	public void before() {
 		session = HibernateUtil.getSessionFactory().openSession(new PartInterceptor());
@@ -47,8 +47,8 @@ public class InterceptorExample {
 		Product p1 = new Product("prod1");
 		Long p1Id = (Long) session.save(p1);
 		Product p2 = new Product("prod2");
-		Long p2Id = (Long) session.save(p2);
-		
+		session.save(p2);
+
 		Product p1Saved = (Product) session.get(Product.class, p1Id);
 		Part savedPart1 = (Part) session.get(Part.class, part1Id);
 		Part savedPart2 = (Part) session.get(Part.class, part2Id);
@@ -56,7 +56,8 @@ public class InterceptorExample {
 		p1Saved.getMultiParts().add(savedPart2);
 		session.save(p1Saved);
 		Part part1WithProduct = (Part) session.get(Part.class, part1Id);
-		Set<Product> part1Products = (Set<Product>) ((Part) session.get(Part.class, part1Id)).getProducts();
+		log.trace("part1WithProduct {}", part1WithProduct);
+		Set<Product> part1Products = ((Part) session.get(Part.class, part1Id)).getProducts();
 		log.info(part1Products.toString());
 	}
 }

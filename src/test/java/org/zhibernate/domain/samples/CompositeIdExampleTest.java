@@ -7,7 +7,9 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Ignore;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.zhibernate.util.HibernateUtil;
@@ -15,8 +17,11 @@ import org.zhibernate.util.HibernateUtil;
 public class CompositeIdExampleTest {
 	private static final Logger log = LoggerFactory.getLogger(CompositeIdExampleTest.class);
 
+	@Rule
+	TestName testName = new TestName();
+
 	static Session session;
-	
+
 	@Before
 	public void before() {
 		session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -33,9 +38,11 @@ public class CompositeIdExampleTest {
 	public static void afterClass() {
 		HibernateUtil.getSessionFactory().close();
 	}
-	
+
 	@Test
 	public void testAdd() {
+		log.info("test {} begin", testName.getMethodName());
+
 		CompositeIdExample c1 = new CompositeIdExample("aa" + Calendar.getInstance().getTime().toString(), "aa");
 		session.save(c1);
 		CompositeIdExample c2 = new CompositeIdExample("aa" + Calendar.getInstance().getTime().toString(), "bb");
@@ -43,13 +50,10 @@ public class CompositeIdExampleTest {
 	}
 
 	@Ignore
-	@Test(expected=org.hibernate.exception.ConstraintViolationException.class)
+	@Test(expected = org.hibernate.exception.ConstraintViolationException.class)
 	public void testAddFailure() {
 		CompositeIdExample c1 = new CompositeIdExample("aa", "aa");
 		session.save(c1);
 	}
 
-	
-
-	
 }

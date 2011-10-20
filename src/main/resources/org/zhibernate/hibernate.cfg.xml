@@ -30,7 +30,7 @@
 		<property name="show_sql">true</property>
 
 		<!-- Drop and re-create the database schema on startup -->
-		<property name="hbm2ddl.auto">update</property>
+		<property name="hbm2ddl.auto">udpdate</property>
 
 		<mapping resource="org/zhibernate/domain/Event.hbm.xml" />
 		<mapping resource="org/zhibernate/domain/Person.hbm.xml" />
